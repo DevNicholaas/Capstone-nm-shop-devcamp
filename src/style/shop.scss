@@ -1,0 +1,11 @@
+.shop {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.shop > h1 {
+    margin-left: 130px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}

@@ -1,0 +1,10 @@
+.header {
+    display: grid;
+    justify-content: center;
+
+    &__img img {
+        height: 100px;
+        background: no-repeat;
+    }
+
+}

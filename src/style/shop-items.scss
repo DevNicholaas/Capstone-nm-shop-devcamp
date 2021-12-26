@@ -1,0 +1,10 @@
+.shop_items_wrapper > .shop_items  {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 50px;
+    grid-column-gap: 14px;
+
+    &:hover {
+       cursor: pointer;
+    }
+}
