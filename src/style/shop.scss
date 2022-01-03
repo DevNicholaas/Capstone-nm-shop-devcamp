@@ -5,6 +5,10 @@
 }
 .shop > h3{
     padding-left: 200px;
+
+    @media  (min-width: 600px){
+        padding: 50px;
+    }
 }
 
 .shop > h1 {
@@ -15,6 +19,10 @@
 
 .shopping-cart > .bp3-card{
     width: 20vh;
+
+    @media  (min-width: 600px) {
+        padding: 50px;
+    }
 }
 
 .shopping-cart > .bp3-card > .shopping-cart > h3 {

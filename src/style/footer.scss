@@ -8,4 +8,8 @@
     justify-content: center;
     font-size: 10vh;
     margin-top: 50px;
+
+    @media  (min-width: 600px) {
+        font-size: 5vh;
+    }
 }
