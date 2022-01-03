@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import ShoppingCart from './shoppingcart'
+
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+
+import '@blueprintjs/core/lib/css/blueprint.css'
+import { Button, Spinner, SpinnerSize } from '@blueprintjs/core'
+
 
 
 
@@ -51,16 +54,16 @@ class Shop extends Component {
             <div className='shop_items' key={item.id}>
                 <img width='100px' height="100px" src={`data:img/jpeg;base64,${item.img}`}></img>
                 <h2>{item.title}</h2>
-                <h4>{item.description}</h4>
                 <p>{`$`}{item.price}</p>
-                <button type='button' value='Add' onClick={() => this.handleAddToCart(item)}>Add to cart</button>
+                <Button intent="success" text='Add to cart' onClick={() => this.handleAddToCart(item)}/>
+
+                {/*<button type='button' value='Add' onClick={() => this.handleAddToCart(item)}>Add to cart</button>*/}
             </div>
         ))
         return itemsHtml
     }
 
     handleAddToCart (item) {
-        console.log("list ", this.state.products)
         this.setState({
             products:[...this.state.products, item]
             
@@ -80,9 +83,10 @@ class Shop extends Component {
 
     render () {
         if (this.state.loading) {
-            return <div className='loading'>
+            return <Spinner intent={"primary"} size={SpinnerSize.STANDARD} value={0.7} />
+            {/*<div className='loading'>
                 Loading
-            </div>
+        </div>*/}
         }
 
         else if (this.state.error) {
@@ -95,9 +99,10 @@ class Shop extends Component {
         
         return (
             <div className='shop'>
-                <a url='link.com'>
-                    link
-                    </a>
+                <h3>
+                    Instructions: 
+                    <p>Pick your favorite fruit to add to cart!</p>
+                </h3>
                 <div className='shop_items_wrapper'>
                     <div className='shop_items'>
                         {this.renderShopItems()}
@@ -105,7 +110,7 @@ class Shop extends Component {
                     </div>
                 </div>
                 <div className='shopping-cart'>
-                     <ShoppingCart products={this.props.products}/>
+                     <ShoppingCart products={this.state.products}/>
                 </div>
             </div>
             )

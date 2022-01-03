@@ -3,9 +3,29 @@
     justify-content: center;
     grid-template-columns: 1fr 1fr 1fr;
 }
+.shop > h3{
+    padding-left: 200px;
+}
 
 .shop > h1 {
     margin-left: 130px;
     margin-bottom: 20px;
     margin-top: 10px;
+}
+
+.shopping-cart > .bp3-card{
+    width: 20vh;
+}
+
+.shopping-cart > .bp3-card > .shopping-cart > h3 {
+    display: grid;
+    justify-content: center;
+}
+
+.shopping-cart > .bp3-card > .shopping-cart > ul > .shopping_list {
+    padding: 10px;
+}
+
+.shopping-cart > .bp3-card > .shopping-cart > ul > .shopping_list > .bp3-button  {
+    margin-left: 20px;
 }

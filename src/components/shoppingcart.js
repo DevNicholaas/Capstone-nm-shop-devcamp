@@ -1,63 +1,59 @@
 import React, { Component } from "react";
 
+import { Card, Elevation, Button } from '@blueprintjs/core'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { ListViewComponent } from "@syncfusion/ej2-react-lists";
-import { data } from "jquery";
 
 class ShoppingCart extends Component {
   constructor(props) {
     super(props);
 
-    this.listviewInstance = null;
 
     this.state = {
-      title: "",
-      price: 0,
-      total:0
+    products: []
     };
-
-    products = this.props.title
-  }
- 
-
-  listTemplate(products) {
-    return (
-      <div className="cart-list">
-        {this.state.title}
-        {this.state.price}
-        {this.state.total}
-        <button
-          className="deletebtn"
-          type="button"
-          onClick={() => deleteItem.bind(this)}
-        >
-          delete
-        </button>
-      </div>
-    );
+      
   }
 
 
-   
 
-  deleteItem(args) {
-    args.stopPropagation();
-    let liItem = args.target.closest("li");
-    this.listviewInstance.removeItem(liItem);
-  }
+renderProducts(){
+    const products = this.props
+    console.log("->",products.products)
+    let shoppingList = products.products.map(item => (
+        <div className="shopping_list" key={item.id}>
+            {item.title}, {item.price}
+            <Button intent="remove" text='Delete' onClick={(e) => this.handleRemoveProducts(e, item)}/>
+        </div>)
+    )
+    return shoppingList;
+
+}
+
+handleRemoveProducts (e, item) {
+  this.setState(state => {
+  let products = this.props
+  const newCartItems = products.products.filter(a => a.id !== item.id)
+  return {newCartItems: newCartItems}, console.log(newCartItems)}) 
+}
+
+
 
   render() {
     return (
+      <Card interactive={true} elevation={Elevation.THREE}>
       <div className="shopping-cart">
         <FontAwesomeIcon
           icon={faShoppingCart}
-          onClick={() => this.listTemplate()}
+          onClick={() => this.renderProducts()}
         />
-        <ul>{/*this.state.map(products)*/}
+        <h3>Cart</h3>
+        <ul>
+        {this.renderProducts()}
         </ul>
-        Click Me!
       </div>
+      </Card>
     );
   }
 }

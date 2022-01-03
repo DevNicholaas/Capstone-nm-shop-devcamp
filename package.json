@@ -32,7 +32,9 @@
   },
   "homepage": "https://github.com/bottega-code-school/js-builder",
   "dependencies": {
+    "@blueprintjs/core": "^3.52.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@popperjs/core": "2.3.2",
@@ -53,6 +55,7 @@
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
+    "downshift": "^6.1.7",
     "eslint": "^4.2.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-react": "^7.1.0",
