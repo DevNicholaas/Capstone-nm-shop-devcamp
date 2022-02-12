@@ -4,17 +4,13 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 .shop > h3{
-    padding-left: 200px;
+    display: grid;
+    justify-content: center;
+    height: 80px;
 
     @media  (min-width: 600px){
         padding: 50px;
     }
-}
-
-.shop > h1 {
-    margin-left: 130px;
-    margin-bottom: 20px;
-    margin-top: 10px;
 }
 
 .shopping-cart > .bp3-card{

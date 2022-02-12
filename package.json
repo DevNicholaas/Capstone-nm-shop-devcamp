@@ -72,6 +72,8 @@
     "postcss-loader": "^2.1.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-modal": "^3.14.4",
+    "react-native-image-base64": "^0.1.4",
     "sass-loader": "^10.0.0",
     "style-loader": "^0.21.0",
     "webpack": "4.42.1",

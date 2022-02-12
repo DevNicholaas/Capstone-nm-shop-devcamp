@@ -4,6 +4,8 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import { faGithubSquare } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCartPlus } from "@fortawesome/free-solid-svg-icons";
+
 
 
 import Header from './header.js';
