@@ -53,36 +53,36 @@ renderProducts(){
     let newProduct=Object.entries(counts).map(([key, value]) => {
 
    
-    
-    /*let newProduct = counts.map(item => (
-      console.log("item map", item), productInCart = false,
-    
-        <div className="shopping_list" key={item.id}>
-            {item.title}, {item.price} 
-          
-            <Button intent="remove" text='Delete' onClick={(e) => this.handleRemoveProducts(e, item)}/>
-        </div>)
-    )*/
     return <div>
     {console.log("item", key, value)}
     {key} x {value.toString()}
   
-    <Button intent="remove" text='Delete' onClick={(e) => this.handleRemoveProducts(e, item)}/>
+    <Button intent="remove" text='Delete' onClick={(e) => this.handleRemoveProducts(key, value)}/>
 </div>
   });
   return newProduct
 } 
 
-handleRemoveProducts (e, item) {
+handleRemoveProducts (key, value) {
+  const products = this.props.products
 
-  const products = this.state.products
-  //this.state.products.map()
-  console.log("inside delete",products,"item", item)
-  const newCartItems = products.map(a => a.id !== item.id)
-  console.log(newCartItems)
-  this.setState({
-    products: newCartItems
-  })
+  const counts = {};
+
+  if (counts = 0) {
+    console.log('empty counter')
+  }
+
+  products.forEach(function (x) { counts[x.title] = (counts[x.title] || 0) - 1; });
+  console.log(counts)
+  let newProduct=Object.entries(counts).map(([key, value]) => {
+
+
+  return <div>
+  {console.log("item", key, value)}
+  {key} x {value.toString()}
+</div>
+});
+return newProduct
  
 }
 componentWillUnmount () {
