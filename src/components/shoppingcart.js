@@ -20,21 +20,6 @@ class ShoppingCart extends Component {
   }
 
 
- /* componentDidUpdate(nextProps, nextState) {
-    if (nextState.products.push(nextProps)) {
-      return true;
-    }
-
-
-}*/
-
-/*componentDidUpdate () {
-  if (this.shouldComponentUpdate ==true){
-  this.setState({
-    products: products
-  }); return console.log("Updated")
-  }
-}*/
 
 
 
@@ -43,8 +28,8 @@ renderProducts(){
     const products = this.props.products
     //this.state.products.map()
     console.log("render produ",products)
+    console.log("state", this.state)
     //products you only need to count if we have duplicate data , autoincrement the value
-    let productInCart = false;
 
     const counts = {};
 
@@ -65,12 +50,28 @@ renderProducts(){
 
 handleRemoveProducts (key, value) {
   const products = this.props.products
+  console.log("delete click", key, value )
+  if (value > 1) {
+    console.log("something")
+    let newValue = value - 1
+    this.setState({
+      value: newValue
+    })
 
-  const counts = {};
-
-  if (counts = 0) {
-    console.log('empty counter')
+  } 
+  
+  if (value = 1) {
+    console.log('nothing', products)
+    products.pop()
+    this.setState({
+      products: this.state.products.filter( product => {
+        return products.id !== product.id
+      })
+    })
   }
+
+  /*const counts = {};
+
 
   products.forEach(function (x) { counts[x.title] = (counts[x.title] || 0) - 1; });
   console.log(counts)
@@ -82,9 +83,9 @@ handleRemoveProducts (key, value) {
   {key} x {value.toString()}
 </div>
 });
-return newProduct
- 
+return newProduct */
 }
+
 componentWillUnmount () {
   console.log("unmounted", this.state.products)
 }
