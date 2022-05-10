@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Button } from "@blueprintjs/core";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import axios from "axios";
@@ -28,16 +28,11 @@ export default class ModalForm extends Component {
       })
       .then((response) => {
       this.props.handleSuccessfullFormSubmission(response.data);
-        /*this.setState({
-          title: "",
-          price: 0,
-          img: "",
-        });*/
       })
       .catch((error) => {
-        console.log("error submit");
+        console.log("error submit", error);
       });
-      event.preventDefault();
+      event.preventDefault();   
   }
 
   handleChange(event) {
@@ -111,7 +106,6 @@ export default class ModalForm extends Component {
 
         <button>Save</button>
 
-        {/*<Button intent='submit' text="Submit"/>*/}
       </form>
     );
   }

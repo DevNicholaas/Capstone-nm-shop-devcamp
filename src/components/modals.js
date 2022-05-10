@@ -15,10 +15,20 @@ export default class Modal extends Component {
                 right: "auto",
                 marginRight: "-50%",
                 transform: "translate(-50%, -50%",
-                width: "800px"
+                width: "800px",
+                height: "60px",
+                display: "flex",
+                justifyContent: "center"
             },
             overlay: {
                 backgroundColor: "rgba(1, 1, 1, 0.75)"
+            }, 
+
+            form: {
+                input: {
+                    fontSize: "20px",
+                    marginRight: "5px"
+                }
             }
         }
 

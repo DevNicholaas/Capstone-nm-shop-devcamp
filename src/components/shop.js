@@ -17,8 +17,8 @@ class Shop extends Component {
       products: [],
     };
 
-    this.handleAddToCart = this.handleAddToCart.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   _isMounted = false;
@@ -49,11 +49,7 @@ class Shop extends Component {
   renderShopItems() {
     const itemsHtml = this.state.items.map((item) => (
       <div className="shop_items" key={item.id}>
-        <img
-          width="100px"
-          height="100px"
-          src={item.img}
-        ></img>
+        <img width="100px" height="100px" src={item.img}></img>
         <h2>{item.title}</h2>
         <p>
           {`$`}
@@ -70,7 +66,7 @@ class Shop extends Component {
           onClick={() => this.handleDelete(item)}
         />
 
-        {/*<button type='button' value='Add' onClick={() => this.handleAddToCart(item)}>Add to cart</button>*/}
+
       </div>
     ));
     return itemsHtml;
@@ -81,41 +77,26 @@ class Shop extends Component {
       .delete(`https://nm-shop-db-devcamp.herokuapp.com/shop/${item.id}`)
 
       .then((response) => {
-          console.log(response.data), window.location.reload();
-        })
+        console.log(response.data), window.location.reload();
+      })
 
       .catch((error) => {
         console.log("Delete err");
       });
-
   }
 
   handleAddToCart(item) {
- 
     this.setState({
       products: [...this.state.products, item],
     });
 
-    console.log("current state", this.state.products)
-
-    {
-      /*let item = {
-        title: `${item.title}`, price: {item.price}
-    }*/
-    }
   }
-
 
   render() {
     if (this.state.loading) {
       return (
         <Spinner intent={"primary"} size={SpinnerSize.STANDARD} value={0.7} />
       );
-      {
-        /*<div className='loading'>
-                Loading
-        </div>*/
-      }
     } else if (this.state.error) {
       return <div className="error">Error occured</div>;
     } else {
@@ -123,13 +104,22 @@ class Shop extends Component {
         <div className="shop">
           <h3>
             Instructions:
-            <p>Pick your favorite fruit to add to cart!</p>
+            
+              <ul>
+                1. Click on the green shopping cart to add an item to the shop.
+              </ul>
+              <ul>
+                2. After selecting an item's title, price, and image click save.
+              </ul>
+
+              <ul>3. Then reload the page to see your item in the shop!</ul>
+            
           </h3>
           <div className="shop_items_wrapper">
             <div className="shop_items">{this.renderShopItems()}</div>
           </div>
           <div className="shopping-cart">
-            <ShoppingCart  products={this.state.products} />
+            <ShoppingCart products={this.state.products} />
           </div>
         </div>
       );
