@@ -32,11 +32,11 @@ export default class Modal extends Component {
             }
         }
 
-        this.handleSuccessfullFormSubmission = this.handleSuccessfullFormSubmission.bind(this)
+        this.handleSuccessfulFormSubmission = this.handleSuccessfulFormSubmission.bind(this)
     }
 
-    handleSuccessfullFormSubmission (item) {
-        this.props.handleSuccessfullNewFormSubmission(item)
+    handleSuccessfulFormSubmission (item) {
+        this.props.handleSuccessfulNewFormSubmission(item);
     }
 
     render() {
@@ -45,7 +45,7 @@ export default class Modal extends Component {
             style={this.customStyles}
             onRequestClose={() => {this.props.handleModalClose();}} 
             isOpen={this.props.modalIsOpen}>
-                <ModalForm handleSuccessfullFormSubmission={this.handleSuccessfullFormSubmission}/>
+                <ModalForm handleSuccessfulFormSubmission={this.handleSuccessfulFormSubmission}/>
 
             </ReactModal>
         )

@@ -28,12 +28,11 @@ renderProducts(){
     const counts = {};
 
     products.forEach(function (x) { counts[x.title] = (counts[x.title] || 0) + 1; });
-    console.log(counts)
     let newProduct=Object.entries(counts).map(([key, value]) => {
 
    
-    return <div>
-    {console.log("item", key, value)}
+    return <div key="{item}" >
+  
     {key} x {value.toString()}
   
     <Button intent="remove" text='Delete' onClick={(e) => this.handleRemoveProducts(key, value)}/>

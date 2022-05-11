@@ -18,7 +18,6 @@ export default class ModalForm extends Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state.img);
 
     axios
       .post("https://nm-shop-db-devcamp.herokuapp.com/shop", {
@@ -27,7 +26,7 @@ export default class ModalForm extends Component {
         price: this.state.price,
       })
       .then((response) => {
-      this.props.handleSuccessfullFormSubmission(response.data);
+      this.props.handleSuccessfulFormSubmission(response.data);
       })
       .catch((error) => {
         console.log("error submit", error);

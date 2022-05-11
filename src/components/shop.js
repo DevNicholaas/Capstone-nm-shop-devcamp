@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ShoppingCart from "./shoppingcart";
+import Modal from "./modals";
 
 import axios from "axios";
 
@@ -19,6 +20,7 @@ class Shop extends Component {
 
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleSuccessfulNewFormSubmission = this.handleSuccessfulNewFormSubmission(this)
   }
 
   _isMounted = false;
@@ -44,6 +46,14 @@ class Shop extends Component {
           loading: false,
         });
       });
+  }
+
+  handleSuccessfulNewFormSubmission(item) {
+    this.setState({
+      ModalIsOpen: false,
+      items: [item].concat(this.state.items)
+      
+    })
   }
 
   renderShopItems() {
@@ -72,7 +82,7 @@ class Shop extends Component {
     return itemsHtml;
   }
   handleDelete(item) {
-    console.log(item);
+    
     axios
       .delete(`https://nm-shop-db-devcamp.herokuapp.com/shop/${item.id}`)
 
@@ -116,6 +126,7 @@ class Shop extends Component {
             
           </h3>
           <div className="shop_items_wrapper">
+            <Modal handleSuccessfulNewFormSubmission={this.handleSuccessfulNewFormSubmission}/>
             <div className="shop_items">{this.renderShopItems()}</div>
           </div>
           <div className="shopping-cart">
