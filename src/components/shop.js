@@ -20,7 +20,7 @@ class Shop extends Component {
 
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleSuccessfulNewFormSubmission = this.handleSuccessfulNewFormSubmission(this)
+    this.handleSuccessfulNewFormSubmission = this.handleSuccessfulNewFormSubmission.bind(this)
   }
 
   _isMounted = false;
@@ -50,7 +50,8 @@ class Shop extends Component {
 
   handleSuccessfulNewFormSubmission(item) {
     this.setState({
-      ModalIsOpen: false,
+      loading: false,
+      modalIsOpen: false,
       items: [item].concat(this.state.items)
       
     })
