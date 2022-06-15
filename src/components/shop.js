@@ -4,6 +4,9 @@ import Modal from "./modals";
 
 import axios from "axios";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+
 import "@blueprintjs/core/lib/css/blueprint.css";
 import { Button, Spinner, SpinnerSize } from "@blueprintjs/core";
 
@@ -12,21 +15,23 @@ class Shop extends Component {
     super(props);
 
     this.state = {
+      modalIsOpen: false,
       items: [],
-      loading: true,
+      loading: false,
       error: false,
       products: [],
     };
-
+    this.handleNewShopItemClick = this.handleNewShopItemClick.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleSuccessfulNewFormSubmission = this.handleSuccessfulNewFormSubmission.bind(this)
+    this.handleSuccessfulNewFormSubmission =
+      this.handleSuccessfulNewFormSubmission.bind(this);
   }
 
   _isMounted = false;
 
-  componentDidMount() {
-    this._isMounted = true;
+  getItems() {
 
     fetch("https://nm-shop-db-devcamp.herokuapp.com/shops")
       .then((response) => response.json())
@@ -34,7 +39,7 @@ class Shop extends Component {
         if (this._isMounted) {
           this.setState({
             items: data,
-            loading: false,
+            loading: true,
           });
         }
       })
@@ -48,13 +53,37 @@ class Shop extends Component {
       });
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+    this.getItems();
+  }
+
+  componentDidUpdate() {
+    if (this.state.loading) {
+      this.setState({
+        loading: false,
+      });
+    }
+  }
+
+  handleModalClose() {
+    this.setState({
+      modalIsOpen: false,
+    });
+  }
+
+  handleNewShopItemClick() {
+    this.setState({
+      modalIsOpen: true,
+    });
+  }
+
   handleSuccessfulNewFormSubmission(item) {
     this.setState({
       loading: false,
       modalIsOpen: false,
-      items: [item].concat(this.state.items)
-      
-    })
+      items: [item].concat(this.state.items),
+    });
   }
 
   renderShopItems() {
@@ -76,31 +105,31 @@ class Shop extends Component {
           text="Delete"
           onClick={() => this.handleDelete(item)}
         />
-
-
       </div>
     ));
     return itemsHtml;
   }
-  handleDelete(item) {
-    
+  handleDelete(item, e) {
     axios
       .delete(`https://nm-shop-db-devcamp.herokuapp.com/shop/${item.id}`)
 
       .then((response) => {
-        console.log(response.data), window.location.reload();
+        console.log(response.data)
       })
 
       .catch((error) => {
         console.log("Delete err");
       });
+
+      this.setState({items: this.state.items.filter(function(item) { 
+        return item !== item 
+    })})
   }
 
   handleAddToCart(item) {
     this.setState({
       products: [...this.state.products, item],
     });
-
   }
 
   render() {
@@ -113,24 +142,34 @@ class Shop extends Component {
     } else {
       return (
         <div className="shop">
-          <h3>
-            Instructions:
-            
+          <div className="shop_instruct">
+            <h3>
+              Instructions:
               <ul>
                 1. Click on the green shopping cart to add an item to the shop.
               </ul>
               <ul>
                 2. After selecting an item's title, price, and image click save.
               </ul>
-
               <ul>3. Then reload the page to see your item in the shop!</ul>
-            
-          </h3>
+            </h3>
+          </div>
           <div className="shop_items_wrapper">
-            <Modal handleSuccessfulNewFormSubmission={this.handleSuccessfulNewFormSubmission}/>
+          <div className="new-shop-item-link">
+        <FontAwesomeIcon
+          icon={faCartPlus}
+           onClick={this.handleNewShopItemClick}/>
+        </div>
+            <Modal
+              handleSuccessfulNewFormSubmission={
+                this.handleSuccessfulNewFormSubmission
+              }
+              handleModalClose={this.handleModalClose}
+              modalIsOpen={this.state.modalIsOpen}
+            />
             <div className="shop_items">{this.renderShopItems()}</div>
           </div>
-          <div className="shopping-cart">
+          <div className="shopping_cart">
             <ShoppingCart products={this.state.products} />
           </div>
         </div>

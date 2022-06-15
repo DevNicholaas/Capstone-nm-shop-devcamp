@@ -36,6 +36,7 @@ export default class Modal extends Component {
     }
 
     handleSuccessfulFormSubmission (item) {
+        console.log(item, 'from Modal.js');
         this.props.handleSuccessfulNewFormSubmission(item);
     }
 

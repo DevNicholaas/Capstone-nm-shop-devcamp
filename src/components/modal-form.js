@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component } from "react";
 import { Button } from "@blueprintjs/core";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import axios from "axios";
@@ -18,7 +18,7 @@ export default class ModalForm extends Component {
   }
 
   handleSubmit(event) {
-
+    console.log(this.props, "props")
     axios
       .post("https://nm-shop-db-devcamp.herokuapp.com/shop", {
         img: this.state.img,
@@ -49,7 +49,6 @@ export default class ModalForm extends Component {
     this.convertToBase64(file)
       .then((result) => {
         file = result;
-        console.log("File Is", file);
         this.setState({
           img: result,
           file,

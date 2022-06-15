@@ -35,7 +35,7 @@ renderProducts(){
   
     {key} x {value.toString()}
   
-    <Button intent="remove" text='Delete' onClick={(e) => this.handleRemoveProducts(key, value)}/>
+    <Button intent="remove" text='Delete' style={{marginLeft: "15px"}} onClick={(e) => this.handleRemoveProducts(key, value)}/>
 </div>
   });
   return newProduct
@@ -64,7 +64,6 @@ handleRemoveProducts (key, value) {
 }
 
 componentWillUnmount () {
-  console.log("unmounted", this.state.products)
 }
 
 
@@ -77,7 +76,7 @@ componentWillUnmount () {
           icon={faShoppingCart}
           onClick={() => this.renderProducts()}
         />
-        <h3>List</h3>
+        <h3>Cart</h3>
         <ul>
         {this.renderProducts()}
         </ul>
